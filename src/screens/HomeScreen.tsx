@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
+import { getMovies } from "../api/axiosApi/Api";
 
 export default function HomeScreen() {
+  const [moviesData, setMoviesData] = React.useState([]);
+  useEffect(() => {
+    getMovies().then((res: any) => {
+      setMoviesData(res.data);
+    });
+  }, []);
+  console.log(moviesData);
   return (
     <View style={styles.container}>
       <Text style={styles.space}>Home Screen</Text>
