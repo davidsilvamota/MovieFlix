@@ -6,7 +6,7 @@ import { getMovies } from "../api/axiosApi/Api";
 export default function HomeScreen() {
   const [moviesData, setMoviesData] = React.useState([]);
   useEffect(() => {
-    getMovies().then((res: any) => {
+    getMovies('Spider Man','').then((res: any) => {
       setMoviesData(res.data);
     });
   }, []);
