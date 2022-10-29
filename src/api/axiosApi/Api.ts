@@ -1,8 +1,9 @@
-import { apiKey } from "../../utils/apiKey/apiKey";
+import { apiKey } from "../../utils/apiKey/key";
+
 
 const axios = require("axios").default;
 const Api = axios.create({
-  baseURL: `http://www.omdbapi.com/?apikey=${apiKey}`,
+  baseURL: `http://www.omdbapi.com/?i=tt3896198&apikey=e083227e`,
 });
 export default Api;
 
