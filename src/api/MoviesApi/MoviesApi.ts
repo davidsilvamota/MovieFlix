@@ -1,7 +1,7 @@
 import { apiKey } from "../../utils/apiKey/key";
 import Api from "../axiosApi/Api";
 
-export type MovieType = {
+export type MovieDetailsType = {
   Actors?: string;
   Awards?: string;
   BoxOffice?: string;
@@ -28,7 +28,13 @@ export type MovieType = {
   imdbRating?: string;
   imdbVotes?: symbol;
 };
-
+export type MoviesType = {
+  Poster: string;
+  Title: string;
+  Type: string;
+  Year: string;
+  imdbID: string;
+};
 export function getMovies(title?: string, year?: string) {
-  return Api.get(`/?t=${title}&y=${year}&apikey=${apiKey}`);
+  return Api.get(`/`, { params: { s: title, y: year } });
 }
