@@ -7,6 +7,7 @@ export default function ContainerScreen(props: { children: React.ReactNode }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 8,
+    padding: 20,
+    backgroundColor:'#333',
   },
 });
