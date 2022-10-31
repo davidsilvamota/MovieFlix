@@ -1,92 +1,34 @@
 import React, { useEffect } from "react";
-import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { Banner, Button, Searchbar } from "react-native-paper";
+import { View, StyleSheet, Image } from "react-native";
+import { Avatar, Banner, Searchbar } from "react-native-paper";
 import { getMovies, MoviesType } from "../api/MoviesApi/MoviesApi";
+import LoadingModel from "../components/atoms/LoadingModel";
+
 import TextModel from "../components/atoms/TextModel";
-
-type SearchedMovieCardProps = {
-  title: string;
-  poster: string;
-  year: string;
-  type: string;
-  id: string;
-  onPress: () => void;
-};
-
-function SearchedMovieCard(props: SearchedMovieCardProps) {
-  return (
-    <TouchableOpacity
-      onPress={props.onPress}
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        borderRadius: 8,
-        marginVertical: 8,
-        padding: 8,
-        backgroundColor: "#333",
-      }}
-    >
-      <Image
-        source={{
-          uri: props.poster,
-        }}
-        style={{
-          width: 50,
-          height: 80,
-        }}
-      />
-      <View>
-        <TextModel
-          marginVertical={2}
-          marginHorizontal={15}
-          color="gray"
-          variant="labelLarge"
-        >
-          {props.title}
-        </TextModel>
-        <TextModel
-          marginVertical={2}
-          marginHorizontal={15}
-          color="gray"
-          variant="labelSmall"
-        >
-          {props.year}
-        </TextModel>
-        <TextModel
-          marginVertical={2}
-          marginHorizontal={15}
-          color="gray"
-          variant="labelSmall"
-        >
-          {props.type}
-        </TextModel>
-      </View>
-    </TouchableOpacity>
-  );
-}
+import SearchedMovieCard from "../components/molecules/SearchedMovieCard";
 
 export default function HomeScreen() {
   const [moviesData, setMoviesData] = React.useState<MoviesType[]>();
   const [searchTitleMovie, setSearchTitleMovie] = React.useState<string>("");
-  async function searchMovie() {
-    await getMovies(searchTitleMovie).then((res: any) => {
-      setMoviesData(res.data.Search);
-    });
-  }
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
   useEffect(() => {
     try {
-      searchMovie();
-    } catch {
-      console.log("error");
+      getMovies(searchTitleMovie).then((data) =>
+        setMoviesData(data.data.Search)
+      );
+    } catch (err) {
+      console.log(err);
     }
   }, [searchTitleMovie]);
 
   return (
     <View style={styles.container}>
+      <LoadingModel loading={isLoading} />
       <TextModel marginVertical={10} variant="displaySmall">
         Movies
       </TextModel>
+
       <Searchbar
         placeholder="Movie title"
         onChangeText={(text) => setSearchTitleMovie(text)}
