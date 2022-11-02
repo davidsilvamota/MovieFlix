@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { View, StyleSheet, Image } from "react-native";
 import { Avatar, Banner, Searchbar } from "react-native-paper";
-import { getMovies, MoviesType } from "../api/MoviesApi/MoviesApi";
+import {
+  getDetailsMovies,
+  getMovies,
+  MoviesType,
+} from "../api/MoviesApi/MoviesApi";
 import LoadingModel from "../components/atoms/LoadingModel";
 
 import TextModel from "../components/atoms/TextModel";
@@ -9,6 +13,7 @@ import SearchedMovieCard from "../components/molecules/SearchedMovieCard";
 
 export default function HomeScreen() {
   const [moviesData, setMoviesData] = React.useState<MoviesType[]>();
+  const [movieDetails, setMovieDetails] = React.useState<MoviesType>();
   const [searchTitleMovie, setSearchTitleMovie] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
@@ -21,7 +26,9 @@ export default function HomeScreen() {
       console.log(err);
     }
   }, [searchTitleMovie]);
-
+  function getDetailMovieId(id: string) {
+    getDetailsMovies(id).then((res: any) => setMovieDetails(res.data));
+  }
   return (
     <View style={styles.container}>
       <LoadingModel loading={isLoading} />
@@ -42,10 +49,14 @@ export default function HomeScreen() {
             poster={e.Poster}
             year={e.Year}
             type={e.Type}
-            onPress={() => console.log(e.imdbID)}
+            onPress={() => {
+              getDetailMovieId(e.imdbID);
+              console.log(e.imdbID);
+            }}
           />
         ))}
       </Banner>
+      {movieDetails?.Title}
     </View>
   );
 }

@@ -38,3 +38,7 @@ export type MoviesType = {
 export function getMovies(title?: string, year?: string) {
   return Api.get(`/`, { params: { s: title, y: year } });
 }
+
+export function getDetailsMovies(id: string) {
+  return Api.get(`/`, { params: { i:id } });
+}
