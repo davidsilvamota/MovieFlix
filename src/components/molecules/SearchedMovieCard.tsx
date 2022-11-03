@@ -30,8 +30,8 @@ type SearchedMovieCardProps = {
             uri: props.poster,
           }}
           style={{
-            width: 50,
-            height: 80,
+            width: 100,
+            height: 120,
           }}
         />
         <View>
