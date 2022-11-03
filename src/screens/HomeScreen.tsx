@@ -11,7 +11,7 @@ import LoadingModel from "../components/atoms/LoadingModel";
 import TextModel from "../components/atoms/TextModel";
 import SearchedMovieCard from "../components/molecules/SearchedMovieCard";
 
-export default function HomeScreen({ navigation }: any) {
+export default function HomeScreen({ navigation , show}: any) {
   const [moviesData, setMoviesData] = React.useState<MoviesType[]>();
 
   const [searchTitleMovie, setSearchTitleMovie] = React.useState<string>("");
@@ -27,10 +27,12 @@ export default function HomeScreen({ navigation }: any) {
 
   return (
     <ContainerScreen>
-      <TextModel marginVertical={10} variant="bodyMedium">
+      {}
+      <TextModel marginVertical={4} variant="bodyMedium">
         Enter the movie name
       </TextModel>
       <Searchbar
+      
         placeholder="Movie title"
         onChangeText={(text) => setSearchTitleMovie(text)}
         value={searchTitleMovie}

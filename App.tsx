@@ -1,17 +1,20 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { Provider as PaperProvider } from "react-native-paper";
+import { Appbar, Provider as PaperProvider } from "react-native-paper";
 import HomeScreen from "./src/screens/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MovieDetailsScreen from "./src/screens/MovieDetailsScreen";
+import { Spin as Hamburger } from 'hamburger-react'
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+ 
   return (
-    <PaperProvider theme={{mode:'exact'}} >
+    <PaperProvider theme={{ mode: "exact" }}>
       <StatusBar style="auto" />
+
       <NavigationContainer
         theme={{
           colors: {
@@ -25,7 +28,13 @@ export default function App() {
           dark: false,
         }}
       >
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerRight: () => (
+              <Hamburger size={20} color={'#333'} />
+            ),
+          }}
+        >
           <Stack.Screen name="Movies" component={HomeScreen} />
           <Stack.Screen name="Movies Details" component={MovieDetailsScreen} />
         </Stack.Navigator>
