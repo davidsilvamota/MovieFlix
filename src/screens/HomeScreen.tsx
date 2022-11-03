@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
-import {
-  StyleSheet,
-  ScrollView,
-} from "react-native";
-import { Banner, Searchbar } from "react-native-paper";
+import { ScrollView } from "react-native";
+import { Searchbar } from "react-native-paper";
 import { getMovies, MoviesType } from "../api/MoviesApi/MoviesApi";
 import ContainerScreen from "../components/atoms/ContainerScreen";
 
@@ -25,7 +22,6 @@ export default function HomeScreen({ navigation, show }: any) {
 
   return (
     <ContainerScreen>
-      {}
       <TextModel marginVertical={4} variant="bodyMedium">
         Enter the movie name
       </TextModel>
@@ -43,8 +39,9 @@ export default function HomeScreen({ navigation, show }: any) {
           display: moviesData?.length ? "flex" : "none",
         }}
       >
-        {moviesData?.map((e) => (
+        {moviesData?.map((e, i) => (
           <SearchedMovieCard
+            key={i}
             id={e.imdbID}
             title={e.Title}
             poster={e.Poster}
@@ -59,8 +56,3 @@ export default function HomeScreen({ navigation, show }: any) {
     </ContainerScreen>
   );
 }
-const styles = StyleSheet.create({
-  space: {
-    margin: 10,
-  },
-});

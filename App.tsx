@@ -5,16 +5,15 @@ import HomeScreen from "./src/screens/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MovieDetailsScreen from "./src/screens/MovieDetailsScreen";
-import { Spin as Hamburger } from 'hamburger-react'
+import { Spin as Hamburger } from "hamburger-react";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
- 
+  const [menuOpen, setMenuOpen] = React.useState(false);
   return (
     <PaperProvider theme={{ mode: "exact" }}>
-      <StatusBar style="auto" />
-
+      <StatusBar style="light" />
       <NavigationContainer
         theme={{
           colors: {
@@ -30,9 +29,12 @@ export default function App() {
       >
         <Stack.Navigator
           screenOptions={{
-            headerRight: () => (
-              <Hamburger onToggle={()=>console.log('clicou')} size={20} color={'white'} />
-            ),
+            headerRight: () =>
+              menuOpen ? (
+                <Appbar.Action color="white" size={30} icon="close" onPress={() => {setMenuOpen(!menuOpen)}} />
+              ) : (
+                <Appbar.Action color="white" size={30} icon="menu" onPress={() => {setMenuOpen(!menuOpen)}} />
+              ),
           }}
         >
           <Stack.Screen name="Movies" component={HomeScreen} />
