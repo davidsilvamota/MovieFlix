@@ -1,21 +1,19 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Image, ScrollView, View } from "react-native";
-import { Banner, Searchbar } from "react-native-paper";
 import {
-  getMovies,
-  MovieDetailsType,
-  MoviesType,
-} from "../api/MoviesApi/MoviesApi";
+  StyleSheet,
+  ScrollView,
+} from "react-native";
+import { Banner, Searchbar } from "react-native-paper";
+import { getMovies, MoviesType } from "../api/MoviesApi/MoviesApi";
 import ContainerScreen from "../components/atoms/ContainerScreen";
-import LoadingModel from "../components/atoms/LoadingModel";
+
 import TextModel from "../components/atoms/TextModel";
 import SearchedMovieCard from "../components/molecules/SearchedMovieCard";
 
-export default function HomeScreen({ navigation , show}: any) {
+export default function HomeScreen({ navigation, show }: any) {
   const [moviesData, setMoviesData] = React.useState<MoviesType[]>();
 
   const [searchTitleMovie, setSearchTitleMovie] = React.useState<string>("");
-  //const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   useEffect(() => {
     try {
@@ -32,7 +30,6 @@ export default function HomeScreen({ navigation , show}: any) {
         Enter the movie name
       </TextModel>
       <Searchbar
-      
         placeholder="Movie title"
         onChangeText={(text) => setSearchTitleMovie(text)}
         value={searchTitleMovie}

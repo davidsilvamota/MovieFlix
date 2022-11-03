@@ -20,10 +20,10 @@ export default function App() {
           colors: {
             background: "#333",
             primary: "black",
-            text: "#333",
+            text: "white",
             notification: "#333",
-            card: "#F29F05",
-            border: "black",
+            card: "#222",
+            border: "#555",
           },
           dark: false,
         }}
@@ -31,7 +31,7 @@ export default function App() {
         <Stack.Navigator
           screenOptions={{
             headerRight: () => (
-              <Hamburger size={20} color={'#333'} />
+              <Hamburger onToggle={()=>console.log('clicou')} size={20} color={'white'} />
             ),
           }}
         >
