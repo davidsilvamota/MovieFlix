@@ -22,7 +22,6 @@ type SearchedMovieCardProps = {
           alignItems: "center",
           borderRadius: 8,
           marginVertical: 8,
-          padding: 8,
           backgroundColor: "#333",
         }}
       >

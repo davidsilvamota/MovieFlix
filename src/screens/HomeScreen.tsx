@@ -1,23 +1,21 @@
 import React, { useEffect } from "react";
-import { View, StyleSheet, Image, ScrollView } from "react-native";
-import { Avatar, Banner, Searchbar } from "react-native-paper";
+import { StyleSheet, Image, ScrollView, View } from "react-native";
+import { Banner, Searchbar } from "react-native-paper";
 import {
-  getDetailsMovies,
   getMovies,
   MovieDetailsType,
   MoviesType,
 } from "../api/MoviesApi/MoviesApi";
 import ContainerScreen from "../components/atoms/ContainerScreen";
 import LoadingModel from "../components/atoms/LoadingModel";
-
 import TextModel from "../components/atoms/TextModel";
 import SearchedMovieCard from "../components/molecules/SearchedMovieCard";
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }: any) {
   const [moviesData, setMoviesData] = React.useState<MoviesType[]>();
-  const [movieDetails, setMovieDetails] = React.useState<MovieDetailsType>();
+
   const [searchTitleMovie, setSearchTitleMovie] = React.useState<string>("");
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  //const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   useEffect(() => {
     try {
@@ -26,9 +24,7 @@ export default function HomeScreen() {
       console.log(err);
     }
   }, [searchTitleMovie]);
-  function getDetailMovieId(id: string) {
-    getDetailsMovies(id).then((res) => setMovieDetails(res.data));
-  }
+
   return (
     <ContainerScreen>
       <TextModel marginVertical={10} variant="bodyMedium">
@@ -39,9 +35,15 @@ export default function HomeScreen() {
         onChangeText={(text) => setSearchTitleMovie(text)}
         value={searchTitleMovie}
       />
-      <ScrollView>
-      <Banner visible={searchTitleMovie.length > 0 ? true : false}>
-        
+
+      <ScrollView
+        style={{
+          backgroundColor: "#222",
+          paddingHorizontal: 20,
+          paddingVertical: 4,
+          display: moviesData?.length ? "flex" : "none",
+        }}
+      >
         {moviesData?.map((e) => (
           <SearchedMovieCard
             id={e.imdbID}
@@ -50,14 +52,10 @@ export default function HomeScreen() {
             year={e.Year}
             type={e.Type}
             onPress={() => {
-              getDetailMovieId(e.imdbID);
-              console.log(e.imdbID);
+              navigation.navigate("Movies Details", { movieId: e.imdbID });
             }}
           />
-          
         ))}
-        
-      </Banner>
       </ScrollView>
     </ContainerScreen>
   );

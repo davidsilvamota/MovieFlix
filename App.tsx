@@ -4,13 +4,13 @@ import { Provider as PaperProvider } from "react-native-paper";
 import HomeScreen from "./src/screens/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import ContainerScreen from "./src/components/atoms/ContainerScreen";
+import MovieDetailsScreen from "./src/screens/MovieDetailsScreen";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <PaperProvider>
+    <PaperProvider theme={{mode:'exact'}} >
       <StatusBar style="auto" />
       <NavigationContainer
         theme={{
@@ -27,6 +27,7 @@ export default function App() {
       >
         <Stack.Navigator>
           <Stack.Screen name="Movies" component={HomeScreen} />
+          <Stack.Screen name="Movies Details" component={MovieDetailsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>

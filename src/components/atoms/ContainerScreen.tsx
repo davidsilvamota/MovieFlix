@@ -14,7 +14,7 @@ export default function ContainerScreen(props: {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 14,
     backgroundColor: "#333",
     overflow: "hidden",
   },
