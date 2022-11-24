@@ -4,8 +4,6 @@ import { Appbar, Provider as PaperProvider } from "react-native-paper";
 import HomeScreen from "./src/screens/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import MovieDetailsScreen from "./src/screens/MovieDetailsScreen";
-import { Spin as Hamburger } from "hamburger-react";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,7 +36,7 @@ export default function App() {
           }}
         >
           <Stack.Screen name="Movies" component={HomeScreen} />
-          <Stack.Screen name="Movies Details" component={MovieDetailsScreen} />
+          <Stack.Screen name="Movies Details" component={()=><></>} />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>

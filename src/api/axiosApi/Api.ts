@@ -2,11 +2,10 @@ import axios from "axios";
 import { apiKey } from "../../utils/apiKey/key";
 
 const Api = axios.create({
-  baseURL: `http://www.omdbapi.com`,
+  baseURL: `https://api.themoviedb.org/3`,
 });
-
 Api.defaults.params = {
-  apiKey,
-}
+  api_key : apiKey,
+  language: 'pt-BR'
+};
 export default Api;
-

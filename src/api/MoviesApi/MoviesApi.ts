@@ -1,44 +1,29 @@
 import { apiKey } from "../../utils/apiKey/key";
 import Api from "../axiosApi/Api";
+import PosterApi from "../axiosApi/PosterApi";
 
-export type MovieDetailsType = {
-  Actors?: string;
-  Awards?: string;
-  BoxOffice?: string;
-  Country?: string;
-  DVD?: string;
-  Director?: string;
-  Genre?: string;
-  Language?: string;
-  Metascore?: string;
-  Plot?: string;
-  Poster?: string;
-  Production?: string;
-  Rated?: string;
-  Ratings?: { Source?: string; Value?: string }[];
-  Released?: string;
-  Response?: string;
-  Runtime?: string;
-  Title?: string;
-  Type?: string;
-  Website?: string;
-  Writer?: string;
-  Year?: string;
-  imdbID?: string;
-  imdbRating?: string;
-  imdbVotes?: symbol;
+export type SearchMoviesTypes = {
+  adult?: boolean;
+  backdrop_path?: string;
+  genre_ids?: number[];
+  id?: number;
+  original_language?: string;
+  original_title?: string;
+  overview?: string;
+  popularity?: 172.875;
+  poster_path?: string;
+  release_date?: string;
+  title?: string;
+  video?: false;
+  vote_average?: number;
+  vote_count?: number;
 };
-export type MoviesType = {
-  Poster: string;
-  Title: string;
-  Type: string;
-  Year: string;
-  imdbID: string;
-};
-export function getMovies(title?: string, year?: string) {
-  return Api.get(`/`, { params: { s: title, y: year } });
+export function searchMoviesTitle(title: string) {
+  return Api.get(`/search/movie`, { params: { query: title } });
 }
-
-export function getDetailsMovies(id: string) {
-  return Api.get(`/`, { params: { i:id } });
+export function getPoster() {
+  return PosterApi.get(`/no2cllXSRA56LPipQnuPlg3RuTL.jpg`);
 }
+// export function getMovie() {
+//   return Api.get("/movie/505642-black-panther-wakanda-forever");
+// }

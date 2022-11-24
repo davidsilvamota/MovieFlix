@@ -7,7 +7,7 @@ type SearchedMovieCardProps = {
     poster: string;
     year: string;
     type: string;
-    id: string;
+    id: number;
     onPress: () => void;
   };
 
@@ -26,9 +26,7 @@ type SearchedMovieCardProps = {
         }}
       >
         <Image
-          source={{
-            uri: props.poster,
-          }}
+         source={{uri:props.poster}}
           style={{
             width: 100,
             height: 120,
