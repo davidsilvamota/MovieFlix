@@ -28,6 +28,7 @@ export default function TextModel(props: TextModelProps) {
   return (
     <Text
       style={{
+        maxWidth:180,
         color: props.color || "white",
         marginHorizontal: props.marginHorizontal,
         marginVertical: props.marginVertical,

@@ -34,11 +34,11 @@ type SearchedMovieCardProps = {
         />
         <View>
           <TextModel
-          
             marginVertical={2}
             marginHorizontal={15}
             color="gray"
             variant="labelMedium"
+            
           >
             {props.title}
           </TextModel>
