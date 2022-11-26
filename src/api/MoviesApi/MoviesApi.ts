@@ -1,6 +1,5 @@
-import { apiKey } from "../../utils/apiKey/key";
+
 import Api from "../axiosApi/Api";
-import PosterApi from "../axiosApi/PosterApi";
 
 export type SearchMoviesTypes = {
   adult?: boolean;
@@ -20,9 +19,6 @@ export type SearchMoviesTypes = {
 };
 export function searchMoviesTitle(title: string) {
   return Api.get(`/search/movie`, { params: { query: title } });
-}
-export function getPoster() {
-  return PosterApi.get(`/no2cllXSRA56LPipQnuPlg3RuTL.jpg`);
 }
 // export function getMovie() {
 //   return Api.get("/movie/505642-black-panther-wakanda-forever");

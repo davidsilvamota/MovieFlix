@@ -20,7 +20,7 @@ export default function App() {
             text: "white",
             notification: "#333",
             card: "#222",
-            border: "#555",
+            border: "black",
           },
           dark: false,
         }}

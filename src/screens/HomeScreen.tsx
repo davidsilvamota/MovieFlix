@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ScrollView, View, Text } from "react-native";
 import { Searchbar } from "react-native-paper";
 import {
-  getPoster,
   searchMoviesTitle,
   SearchMoviesTypes,
 } from "../api/MoviesApi/MoviesApi";
@@ -12,15 +11,14 @@ import SearchedMovieCard from "../components/molecules/SearchedMovieCard";
 export default function HomeScreen({ navigation, show }: any) {
   const [searchTitleMovie, setSearchTitleMovie] = useState<any>("");
   const [movies, setMovies] = useState<SearchMoviesTypes[]>([]);
-  const [urlPoster, setUrlPoster] = useState("");
 
   useEffect(() => {
     searchMoviesTitle(searchTitleMovie).then((res) =>
       setMovies(res.data.results)
     );
-    getPoster().then((res)=>setUrlPoster(res.data))
+    // getPoster().then((res) => setUrlPoster(res.data));
   }, [searchTitleMovie]);
- 
+
   return (
     <ContainerScreen>
       <Searchbar
@@ -44,7 +42,7 @@ export default function HomeScreen({ navigation, show }: any) {
             key={i}
             id={e.id || 0}
             title={e.title || ""}
-            poster={e.poster_path ||''}
+            poster={`https://image.tmdb.org/t/p/w500/${e.poster_path}`}
             year={e.release_date || ""}
             type={e.original_language || ""}
             onPress={() => {
